@@ -1,6 +1,6 @@
 annotations:
   catalog.cattle.io/certified: partner
-  catalog.cattle.io/display-name: Harbor Prompt
+  catalog.cattle.io/display-name: Harbor
   catalog.cattle.io/kube-version: '>=1.20-0'
   catalog.cattle.io/release-name: harbor
 apiVersion: v1
