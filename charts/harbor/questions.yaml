@@ -1,4 +1,19 @@
 questions:
+  - variable: externalURL
+    type: string
+    required: true
+    label: externalURL
+    group: "Hostname and Password"
+  - variable: tls.auto.commonName
+    type: string
+    required: true
+    label: Common Name
+    group: "Hostname and Password"
+  - variable: harborAdminPassword
+    type: string
+    required: true
+    label: Harbor Password
+    group: "Hostname and Password"
   - variable: expose.type
     description: "Kubernetes Service Type"
     type: enum
@@ -8,15 +23,3 @@ questions:
       - "loadBalancer"
     label: Kubernetes Service Type
     group: "Service Settings"
-  - variable: harborAdminPassword
-    type: string
-    required: true
-    label: Harbor Password
-  - variable: externalURL
-    type: string
-    required: true
-    label: externalURL
-  - variable: tls.auto.commonName
-    type: string
-    required: true
-    label: Common Name
