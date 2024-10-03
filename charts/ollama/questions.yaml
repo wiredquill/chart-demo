@@ -1,0 +1,165 @@
+categories:
+  - "Ollama"
+
+questions:
+  # Ask for the number of replicas
+  - variable: replicaCount
+    label: "Number of Replicas"
+    description: "Specify the number of replicas for Ollama."
+    type: int
+    default: 1
+    required: true
+
+  # Ask for enabling Knative integration
+  - variable: knative.enabled
+    label: "Enable Knative"
+    description: "Enable Knative integration for Ollama."
+    type: boolean
+    default: false
+    required: true
+
+  # Knative service container concurrency
+  - variable: knative.containerConcurrency
+    label: "Knative Service Container Concurrency"
+    description: "Specify the Knative service container concurrency."
+    type: int
+    default: 0
+    required: false
+    show_if: "knative.enabled=true"
+
+  # Knative service timeout seconds
+  - variable: knative.timeoutSeconds
+    label: "Knative Service Timeout Seconds"
+    description: "Specify the Knative service timeout seconds."
+    type: int
+    default: 300
+    required: false
+    show_if: "knative.enabled=true"
+
+  # Docker image repository
+  - variable: image.repository
+    label: "Docker Image Repository"
+    description: "Specify the Docker image repository for Ollama."
+    type: string
+    default: "ollama/ollama"
+    required: true
+
+  # Docker pull policy
+  - variable: image.pullPolicy
+    label: "Docker Image Pull Policy"
+    description: "Specify the Docker image pull policy."
+    type: enum
+    options:
+      - "Always"
+      - "IfNotPresent"
+      - "Never"
+    default: "IfNotPresent"
+    required: true
+
+  # GPU integration
+  - variable: ollama.gpu.enabled
+    label: "Enable GPU"
+    description: "Enable GPU integration for Ollama."
+    type: boolean
+    default: false
+    required: true
+
+  # GPU type (only shown if GPU is enabled)
+  - variable: ollama.gpu.type
+    label: "GPU Type"
+    description: "Specify the type of GPU to use (nvidia or amd)."
+    type: enum
+    options:
+      - "nvidia"
+      - "amd"
+    default: "nvidia"
+    required: false
+    show_if: "ollama.gpu.enabled=true"
+
+  # Number of GPUs (only shown if GPU is enabled)
+  - variable: ollama.gpu.number
+    label: "Number of GPUs"
+    description: "Specify the number of GPUs to use."
+    type: int
+    default: 1
+    required: false
+    show_if: "ollama.gpu.enabled=true"
+
+  # Enable MIG devices
+  - variable: ollama.gpu.mig.enabled
+    label: "Enable MIG Devices"
+    description: "Enable multiple MIG devices (only for nvidia GPUs)."
+    type: boolean
+    default: false
+    required: false
+    show_if: "ollama.gpu.enabled=true"
+
+  # Persistent Volume for Ollama
+  - variable: persistentVolume.enabled
+    label: "Enable Persistent Volume"
+    description: "Enable persistent volume storage for Ollama."
+    type: boolean
+    default: false
+    required: true
+
+  # Persistent Volume size (only shown if persistence is enabled)
+  - variable: persistentVolume.size
+    label: "Persistent Volume Size"
+    description: "Specify the size of the persistent volume for Ollama."
+    type: string
+    default: "30Gi"
+    required: false
+    show_if: "persistentVolume.enabled=true"
+
+  # Service type
+  - variable: service.type
+    label: "Service Type"
+    description: "Specify the service type for Ollama."
+    type: enum
+    options:
+      - "ClusterIP"
+      - "NodePort"
+      - "LoadBalancer"
+    default: "ClusterIP"
+    required: true
+
+  # Ingress enabled
+  - variable: ingress.enabled
+    label: "Enable Ingress"
+    description: "Enable ingress controller for Ollama."
+    type: boolean
+    default: false
+    required: true
+
+  # Ingress class name (only shown if ingress is enabled)
+  - variable: ingress.className
+    label: "Ingress Class Name"
+    description: "Specify the ingress class name for Ollama."
+    type: string
+    default: ""
+    required: false
+    show_if: "ingress.enabled=true"
+
+  # Liveness probe enabled
+  - variable: livenessProbe.enabled
+    label: "Enable Liveness Probe"
+    description: "Enable liveness probe for the Ollama deployment."
+    type: boolean
+    default: true
+    required: true
+
+  # Readiness probe enabled
+  - variable: readinessProbe.enabled
+    label: "Enable Readiness Probe"
+    description: "Enable readiness probe for the Ollama deployment."
+    type: boolean
+    default: true
+    required: true
+
+  # Autoscaling enabled
+  - variable: autoscaling.enabled
+    label: "Enable Autoscaling"
+    description: "Enable autoscaling for Ollama deployment."
+    type: boolean
+    default: false
+    required: true
