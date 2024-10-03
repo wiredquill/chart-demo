@@ -1,0 +1,25 @@
+questions:
+  - variable: externalURL
+    type: string
+    required: true
+    label: externalURL
+    group: "Hostname and Password"
+  - variable: expose.tls.auto.commonName
+    type: string
+    required: true
+    label: Common Name
+    group: "Hostname and Password"
+  - variable: harborAdminPassword
+    type: string
+    required: true
+    label: Harbor Password
+    group: "Hostname and Password"
+  - variable: expose.type
+    description: "Kubernetes Service Type"
+    type: enum
+    options:
+      - "clusterIP"
+      - "nodePort"
+      - "loadBalancer"
+    label: Kubernetes Service Type
+    group: "Service Settings"
