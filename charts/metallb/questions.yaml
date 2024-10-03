@@ -1,0 +1,151 @@
+categories:
+  - "MetalLB"
+
+questions:
+  # Ask for image pull secrets
+  - variable: imagePullSecrets
+    label: "Image Pull Secrets"
+    description: "Provide the name of the image pull secrets (optional)."
+    type: string
+    default: ""
+    required: false
+
+  # RBAC configuration
+  - variable: rbac.create
+    label: "Create RBAC"
+    description: "Specify whether to install and use RBAC rules."
+    type: boolean
+    default: true
+    required: true
+
+  # Prometheus scrape annotations
+  - variable: prometheus.scrapeAnnotations
+    label: "Enable Prometheus Scrape Annotations"
+    description: "Specify whether to add Prometheus metric auto-collection annotations to pods."
+    type: boolean
+    default: false
+    required: false
+
+  # Prometheus RBAC for scraping
+  - variable: prometheus.rbacPrometheus
+    label: "Enable Prometheus RBAC"
+    description: "Specify whether Prometheus should have RBAC permissions to scrape MetalLB."
+    type: boolean
+    default: true
+    required: true
+
+  # Prometheus service account (shown only if RBAC for Prometheus is enabled)
+  - variable: prometheus.serviceAccount
+    label: "Prometheus Service Account"
+    description: "The service account to use for Prometheus (required if RBAC is enabled)."
+    type: string
+    default: ""
+    required: true
+    show_if: "prometheus.rbacPrometheus=true"
+
+  # Prometheus namespace (shown only if RBAC for Prometheus is enabled)
+  - variable: prometheus.namespace
+    label: "Prometheus Namespace"
+    description: "The namespace where Prometheus is deployed (required if RBAC is enabled)."
+    type: string
+    default: ""
+    required: true
+    show_if: "prometheus.rbacPrometheus=true"
+
+  # Enable PodMonitor for Prometheus Operator
+  - variable: prometheus.podMonitor.enabled
+    label: "Enable PodMonitor"
+    description: "Enable support for Prometheus Operator PodMonitors."
+    type: boolean
+    default: false
+    required: false
+
+  # Enable ServiceMonitor for Prometheus Operator
+  - variable: prometheus.serviceMonitor.enabled
+    label: "Enable ServiceMonitor"
+    description: "Enable support for Prometheus Operator ServiceMonitors."
+    type: boolean
+    default: false
+    required: false
+
+  # Controller log level
+  - variable: controller.logLevel
+    label: "Controller Log Level"
+    description: "Set the controller log level (e.g., all, debug, info, warn, error, none)."
+    type: enum
+    options:
+      - "all"
+      - "debug"
+      - "info"
+      - "warn"
+      - "error"
+      - "none"
+    default: "info"
+    required: true
+
+  # Enable MetalLB Speaker
+  - variable: speaker.enabled
+    label: "Enable MetalLB Speaker"
+    description: "Specify whether to enable the MetalLB Speaker daemonset."
+    type: boolean
+    default: true
+    required: true
+
+  # Speaker log level
+  - variable: speaker.logLevel
+    label: "Speaker Log Level"
+    description: "Set the speaker log level (e.g., all, debug, info, warn, error, none)."
+    type: enum
+    options:
+      - "all"
+      - "debug"
+      - "info"
+      - "warn"
+      - "error"
+      - "none"
+    default: "info"
+    required: true
+
+  # Enable FRR for MetalLB Speaker
+  - variable: speaker.frr.enabled
+    label: "Enable FRR for MetalLB Speaker"
+    description: "Enable FRR (Free Range Routing) for the MetalLB Speaker."
+    type: boolean
+    default: true
+    required: true
+
+  # Use custom FRR image
+  - variable: speaker.frr.image.repository
+    label: "FRR Image Repository"
+    description: "Specify the FRR image repository for MetalLB Speaker."
+    type: string
+    default: "quay.io/frrouting/frr"
+    required: true
+    show_if: "speaker.frr.enabled=true"
+
+  # Enable Prometheus metrics for FRR
+  - variable: speaker.frrMetrics.resources
+    label: "Enable Prometheus Metrics for FRR"
+    description: "Enable Prometheus metrics for FRR (Free Range Routing) in MetalLB Speaker."
+    type: boolean
+    default: true
+    required: false
+
+  # Enable startup probe for MetalLB Speaker
+  - variable: speaker.startupProbe.enabled
+    label: "Enable Startup Probe"
+    description: "Enable startup probe for the MetalLB Speaker."
+    type: boolean
+    default: true
+    required: false
+
+  # CRDs validation failure policy
+  - variable: crds.validationFailurePolicy
+    label: "CRD Validation Failure Policy"
+    description: "Specify the failure policy for CRDs (Fail or Ignore)."
+    type: enum
+    options:
+      - "Fail"
+      - "Ignore"
+    default: "Fail"
+    required: true

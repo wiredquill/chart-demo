@@ -1,0 +1,95 @@
+apiVersion: v1
+entries:
+  harbor:
+  - annotations:
+      catalog.cattle.io/certified: partner
+      catalog.cattle.io/display-name: Harbor Prompt
+      catalog.cattle.io/kube-version: '>=1.20-0'
+      catalog.cattle.io/release-name: harbor
+    apiVersion: v1
+    appVersion: 2.11.0
+    created: "2024-10-02T20:38:31.345908-07:00"
+    description: An open source trusted cloud native registry that stores, signs,
+      and scans content
+    digest: 4acaf9203a79dc5c6b6be1e0ad6f0abe571cad68822432c1ae4e70cbeda494ac
+    home: https://goharbor.io
+    icon: https://raw.githubusercontent.com/goharbor/website/main/static/img/logos/harbor-icon-color.png
+    keywords:
+    - docker
+    - registry
+    - harbor
+    maintainers:
+    - email: yan-yw.wang@broadcom.com
+      name: Yan Wang
+    - email: wenkai.yin@broadcom.com
+      name: Wenkai Yin
+    - email: miner.yang@broadcom.com
+      name: Miner Yang
+    - email: shengwen.yu@broadcom.com
+      name: Shengwen Yu
+    name: harbor
+    sources:
+    - https://github.com/goharbor/harbor
+    - https://github.com/goharbor/harbor-helm
+    urls:
+    - harbor/harbor-1.15.0.tgz
+    version: 1.15.0
+  metallb:
+  - apiVersion: v2
+    appVersion: v0.14.8
+    created: "2024-10-02T20:38:31.341621-07:00"
+    dependencies:
+    - condition: crds.enabled
+      name: crds
+      repository: ""
+      version: 0.14.8
+    - condition: frrk8s.enabled
+      name: frr-k8s
+      repository: https://metallb.github.io/frr-k8s
+      version: 0.0.14
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: 0ed9a545ece1a8ef16437319e742703b831d557bf2e531ce7dad817488e4e9c2
+    home: https://metallb.universe.tf
+    icon: https://metallb.universe.tf/images/logo/metallb-white.png
+    kubeVersion: '>= 1.19.0-0'
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    type: application
+    urls:
+    - metallb-0.14.8.tgz
+    version: 0.14.8
+  ollama:
+  - annotations:
+      artifacthub.io/category: ai-machine-learning
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: set default updateStrategy to Recreate
+        - kind: added
+          description: add service.loadBalancerIP
+    apiVersion: v2
+    appVersion: 0.3.12
+    created: "2024-10-02T20:38:31.34244-07:00"
+    description: Get up and running with large language models locally.
+    digest: 31017c1ad17fb6d44eff162982755475c5012f2f353125686e9430dd51744774
+    home: https://ollama.ai/
+    icon: https://ollama.ai/public/ollama.png
+    keywords:
+    - ai
+    - llm
+    - llama
+    - mistral
+    kubeVersion: ^1.16.0-0
+    maintainers:
+    - email: contact@otwld.com
+      name: OTWLD
+    name: ollama
+    sources:
+    - https://github.com/ollama/ollama
+    - https://github.com/otwld/ollama-helm
+    type: application
+    urls:
+    - ollama-0.61.0.tgz
+    version: 0.61.0
+generated: "2024-10-02T20:38:31.339889-07:00"

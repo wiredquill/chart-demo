@@ -4,7 +4,7 @@ questions:
     required: true
     label: externalURL
     group: "Hostname and Password"
-  - variable: expose.tls.auto.commonName
+  - variable: tls.auto.commonName
     type: string
     required: true
     label: Common Name
